@@ -49,4 +49,16 @@ public enum NotificationMessages {
         }
     },
 
+    FIND_NEAREST_PARKING_SLOT {
+        public String toString() {
+            return " Finding nearest parking slot..........";
+        }
+    },
+
+    PARKING_BOOKED {
+        public String toString() {
+            return " Parking Slot Alloted..........";
+        }
+    }
+
 }
