@@ -16,7 +16,7 @@ public class TaxiXL {
 
     Request request = new Request.Builder().
             url("https://maps.googleapis.com/maps/api/distancematrix/" +
-                    "json?units=imperial&origins=Washington,DC&destinations=New+York+City,NY&key=AIzaSyBPjJPJNLeYleFvejjeuJ7oqfxOdVckwro").build();
+                    "json?units=imperial&origins=Washington,DC&destinations=New+York+City,NY&key=").build();
     Response response = okHttpClient.newCall(request).execute();
 
 
