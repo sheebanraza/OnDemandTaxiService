@@ -1,14 +1,8 @@
 package memberManagement.models;
 
 import memberManagement.service.Member;
-import org.hibernate.annotations.CollectionId;
-import org.springframework.stereotype.Component;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import java.lang.management.MemoryType;
+import javax.persistence.*;
 
 /**
  * Created by sheebanshaikh on 8/12/16.
@@ -33,6 +27,9 @@ public class MemberDetails {
     @Column
     private String password;
 
+    @OneToOne
+    private Member member;
+
     public MemberDetails(String name, String emailId, String password, MemberType memberType) {
         this.name = name;
         this.emailId = emailId;
@@ -44,8 +41,16 @@ public class MemberDetails {
 
     }
 
+    public void setMember(Member member) {
+        this.member = member;
+    }
+
     public Long getMemberId() {
         return memberId;
+    }
+
+    public void setMemberId(Long memberId) {
+        this.memberId = memberId;
     }
 
     public String getName() {
