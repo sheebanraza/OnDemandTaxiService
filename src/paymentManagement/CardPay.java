@@ -7,11 +7,25 @@ import memberManagement.service.Member;
  */
 
 
-public abstract class CardPay {
+public abstract class CardPay implements Payment{
 
-    public abstract void processTransaction(Member member, Float distance);
+    public static final double MIN_DISTANCE = 6;
+
+    protected Payment tempPayment;
+
+
+    public abstract void processTransaction(double distance);
 
     public abstract void cancelTransaction();
 
+    public CardPay(Payment newPayment){
+
+        tempPayment = newPayment;
+
+    }
+
+    public double generateBill() {
+        return tempPayment.generateBill();
+    }
 
 }

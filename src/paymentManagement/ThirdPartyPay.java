@@ -4,10 +4,11 @@ package paymentManagement;
  * Created by sheebanshaikh on 8/10/16.
  */
 
-public class ThirdPartyPay extends Payment {
+public class ThirdPartyPay implements Payment {
 
     @Override
-    public void generateBill() {
+    public double generateBill() {
 
+        return 3.4;
     }
 }

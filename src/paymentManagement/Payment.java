@@ -5,11 +5,10 @@ package paymentManagement;
  */
 
 
-public abstract class Payment {
+public interface Payment {
 
-    public Integer min_amount = 5;
 
-    public abstract void generateBill();
+    public double generateBill();
 
 
 }
