@@ -1,8 +1,6 @@
 package paymentManagement;
 
 
-import memberManagement.service.Member;
-
 /**
  * Created by sheebanshaikh on 8/10/16.
  */
@@ -11,8 +9,14 @@ public class CreditPayment extends CardPay {
 
     private double amount;
 
+    public CreditPayment(Payment newPayment, double dis) {
+        super(newPayment);
+        System.out.println("Paying through Credit");
+        processTransaction(dis);
+    }
+
     @Override
-    public void processTransaction( double distance) {
+    public void processTransaction(double distance) {
         if (distance<=MIN_DISTANCE){
             amount=0;
         }
@@ -26,19 +30,11 @@ public class CreditPayment extends CardPay {
 
     }
 
-    public CreditPayment(Payment newPayment,double dis) {
-        super(newPayment);
-        System.out.println("Paying through Credit");
-        processTransaction(dis);
-    }
-
-
-
     @Override
-    public double generateBill() {
+    public double generateBill(Long distance) {
         System.out.println("Credit transaction cost:   "+ 0.1);
         System.out.println("Fair on Distance traveled: "+ amount);
-        return tempPayment.generateBill()+ amount+ 0.1;
+        return tempPayment.generateBill(distance) + amount + 0.1;
 
     }
 }

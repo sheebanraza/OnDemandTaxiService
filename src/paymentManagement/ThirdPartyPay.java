@@ -6,9 +6,11 @@ package paymentManagement;
 
 public class ThirdPartyPay implements Payment {
 
-    @Override
-    public double generateBill() {
 
-        return 3.4;
+    @Override
+    public double generateBill(Long distance) {
+        System.out.println("");
+
+        return Double.parseDouble(null);
     }
 }

@@ -1,7 +1,5 @@
 package paymentManagement;
 
-import memberManagement.service.Member;
-
 /**
  * Created by sheebanshaikh on 8/10/16.
  */
@@ -14,18 +12,18 @@ public abstract class CardPay implements Payment{
     protected Payment tempPayment;
 
 
-    public abstract void processTransaction(double distance);
-
-    public abstract void cancelTransaction();
-
     public CardPay(Payment newPayment){
 
         tempPayment = newPayment;
 
     }
 
-    public double generateBill() {
-        return tempPayment.generateBill();
+    public abstract void processTransaction(double distance);
+
+    public abstract void cancelTransaction();
+
+    public double getBaseFare() {
+        return tempPayment.BASE_FARE;
     }
 
 }

@@ -1,7 +1,5 @@
 package paymentManagement;
 
-import memberManagement.service.Member;
-
 import static paymentManagement.CardPay.MIN_DISTANCE;
 
 /**
@@ -9,12 +7,17 @@ import static paymentManagement.CardPay.MIN_DISTANCE;
  */
 public class Promotions implements Payment {
 
+    private static final double PROMO_AMT = 2;
+    private double amount;
 
     @Override
-    public double generateBill() {
-
-        return 4.7;
-
-
+    public double generateBill(Long distance) {
+        if (distance <= MIN_DISTANCE) {
+            amount -= PROMO_AMT;
+        } else {
+            amount = (distance * 0.56) - PROMO_AMT;
+        }
+        return amount;
+        //remain amt debit/credit
     }
 }
