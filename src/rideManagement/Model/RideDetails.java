@@ -20,7 +20,7 @@ public class RideDetails {
     private String source;
 
     @Column
-    private String destionation;
+    private String destination;
 
     @OneToOne
     private Customer customer;
@@ -32,9 +32,9 @@ public class RideDetails {
     private RideStatus rideStatus;
 
 
-    public RideDetails(String source, String destionation, Customer customer, Driver driver, RideStatus rideStatus) {
+    public RideDetails(String source, String destination, Customer customer, Driver driver, RideStatus rideStatus) {
         this.source = source;
-        this.destionation = destionation;
+        this.destination = destination;
         this.customer = customer;
         this.driver = driver;
         this.rideStatus = rideStatus;
@@ -49,7 +49,7 @@ public class RideDetails {
     }
 
     public String getDestionation() {
-        return destionation;
+        return destination;
     }
 
     public Customer getCustomer() {
