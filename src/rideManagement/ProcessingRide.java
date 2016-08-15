@@ -5,4 +5,5 @@ package rideManagement;
  */
 
 public class ProcessingRide {
+
 }

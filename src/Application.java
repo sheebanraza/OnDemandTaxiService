@@ -1,7 +1,9 @@
+import com.google.common.collect.Maps;
 import rideManagement.FinalizeRide;
 import rideManagement.ProcessRide;
 import rideManagement.WaitingRide;
 
+import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -14,9 +16,7 @@ public class Application {
     public static void main(String args[]) {
 
         //ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
-        WaitingRide  Wait_obj = new WaitingRide();
-        ProcessRide  proc_Req = new ProcessRide();
-        FinalizeRide final_req = new FinalizeRide();
+
 
         Scanner s = new Scanner(System.in);
         b: do
@@ -38,6 +38,7 @@ public class Application {
                                 {
                                     case 1:
                                         sourceAndDestinationMenu();
+
                                         continue c;
 
                                     case 2:
@@ -125,11 +126,48 @@ public class Application {
     }
 
     private static void sourceAndDestinationMenu() {
+
+        WaitingRide Wait_obj = new WaitingRide();
+        ProcessRide process_Req = new ProcessRide();
+        FinalizeRide final_req = new FinalizeRide();
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter the Source Address: ");
-        String source = scanner.next();
-        System.out.println("Enter the destination Address");
-        String destination = scanner.next();
+        Map<String, String> sourceVsDestinationMap = Maps.newHashMap();
+        String source = null;
+        String destination = null;
+        int vehicle_type = 0;
+        boolean approv_flag;
+        boolean qualify_flag;
+
+        System.out.println("Enter the number of rides you want to book: ");
+        int ride = scanner.nextInt();
+
+        for (int i = 0; i < ride; i++) {
+            System.out.println("Enter the Source Address: ");
+            source = scanner.next();
+            System.out.println("Enter the destination Address");
+            destination = scanner.next();
+            System.out.println("Enter the vehicle type Pool/ X/ XL: ");
+            vehicle_type = scanner.nextInt();
+            sourceVsDestinationMap.put(source, destination);
+
+            process_Req.receiveRequest(source, destination, vehicle_type); //approve request
+            approv_flag = process_Req.approveRequest(source, destination, vehicle_type); // Send Request for implementation
+            qualify_flag = process_Req.qualifyRequest(source, destination, vehicle_type); // Qualify Request
+        }
+
+
+        if (approv_flag = true) {
+            // Request Approved
+        } else {
+            // Request Rejected
+        }
+        if (qualify_flag = true) {
+            // Request qualify
+        } else {
+            // Request not qualified
+
+        }
+
     }
 
 
