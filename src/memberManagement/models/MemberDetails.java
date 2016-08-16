@@ -30,19 +30,19 @@ public class MemberDetails {
     @OneToOne
     private Member member;
 
-    public MemberDetails(String name, String emailId, String password, MemberType memberType) {
+    @Column
+    private MembershipType membershipType;
+
+    public MemberDetails(String name, String emailId, String password, MemberType memberType, MembershipType membershipType) {
         this.name = name;
         this.emailId = emailId;
         this.password = password;
         this.memberType = memberType;
+        this.membershipType = membershipType;
     }
 
     public MemberDetails(){
 
-    }
-
-    public void setMember(Member member) {
-        this.member = member;
     }
 
     public Long getMemberId() {
@@ -65,7 +65,19 @@ public class MemberDetails {
         return password;
     }
 
-    public MemberType getDetails() {
+    public MembershipType getMembershipType() {
+        return membershipType;
+    }
+
+    public Member getMember() {
+        return member;
+    }
+
+    public void setMember(Member member) {
+        this.member = member;
+    }
+
+    public MemberType getMemberType() {
         return memberType;
     }
 }
