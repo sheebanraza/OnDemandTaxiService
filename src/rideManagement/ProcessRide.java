@@ -24,9 +24,8 @@ public class ProcessRide implements RideState {
             if (sourceVsDestinationMap.keySet().size() > 1) {
                 for (String source : sourceVsDestinationMap.keySet()) {
                     System.out.println("Ride processing for \n Source: " + source + "\nDestination: " + sourceVsDestinationMap.get(source)
-                            + "\n Date : " + i + "-Aug-2016");
+                            + "\n Date : " + i++ + "-Aug-2016");
                 }
-
             }
         }
         return true;
