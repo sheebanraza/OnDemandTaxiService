@@ -8,7 +8,7 @@ public class ThirdPartyPay implements Payment {
 
 
     @Override
-    public double generateBill(Long distance) {
+    public double generateBill(Double distance) {
         System.out.println("");
 
         return Double.parseDouble(null);

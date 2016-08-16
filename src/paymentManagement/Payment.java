@@ -9,6 +9,6 @@ public interface Payment {
 
     public static final Double BASE_FARE = 5.41;
 
-    public double generateBill(Long distance);
+    public double generateBill(Double distance);
 
 }

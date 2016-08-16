@@ -31,7 +31,7 @@ public class DebitCard extends CardPay {
     }
 
     @Override
-    public double generateBill(Long distance) {
+    public double generateBill(Double distance) {
         processTransaction(distance);
         System.out.println("Debit transaction cost: "+ 0);
         System.out.println("Fair on Distance traveled: "+ amount);

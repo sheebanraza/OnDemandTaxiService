@@ -9,10 +9,10 @@ public class CreditPayment extends CardPay {
 
     private double amount;
 
-    public CreditPayment(Payment newPayment, double dis) {
-        super(newPayment);
+    public CreditPayment(double dis) {
+        super();
         System.out.println("Paying through Credit");
-        processTransaction(dis);
+        generateBill(dis);
     }
 
     @Override
@@ -31,10 +31,10 @@ public class CreditPayment extends CardPay {
     }
 
     @Override
-    public double generateBill(Long distance) {
+    public double generateBill(Double distance) {
+        processTransaction(distance);
         System.out.println("Credit transaction cost:   "+ 0.1);
         System.out.println("Fair on Distance traveled: "+ amount);
-        return tempPayment.generateBill(distance) + amount + 0.1;
-
+        return getBaseFare() + amount + 0.1;
     }
 }

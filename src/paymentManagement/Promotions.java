@@ -8,10 +8,11 @@ import static paymentManagement.CardPay.MIN_DISTANCE;
 public class Promotions implements Payment {
 
     private static final double PROMO_AMT = 2;
-    private double amount;
+
 
     @Override
-    public double generateBill(Long distance) {
+    public double generateBill(Double distance) {
+        double amount = 0;
         if (distance <= MIN_DISTANCE) {
             amount -= PROMO_AMT;
         } else {
