@@ -1,25 +1,41 @@
 package routingManagement;
 
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.Response;
+import com.google.common.collect.Lists;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
-import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by sheebanshaikh on 8/9/16.
  */
-public class TaxiXL {
+public class TaxiXL implements ProcessRouting {
 
     //Calculation Using Google Distance Matrix API
-    OkHttpClient okHttpClient = new OkHttpClient();
 
-    Request request = new Request.Builder().
-            url("https://maps.googleapis.com/maps/api/distancematrix/" +
-                    "json?units=imperial&origins=Washington,DC&destinations=New+York+City,NY&key=").build();
-    Response response = okHttpClient.newCall(request).execute();
+    @Override
+    public List<Double> processRoutes(Map<String, String> sourceVsDestination) throws Exception {
+        HttpClient httpClient = new DefaultHttpClient();
+        List<Double> distances = Lists.newArrayList(10.0, 14.7, 16.75);
+        HttpGet httpGet =
+                new HttpGet("https://maps.googleapis.com/maps/api/distancematrix/\" +\n" +
+                        "                    \"json?units=imperial&origins=Washington,DC&destinations=New+York+City,NY&key=");
+        HttpResponse httpResponse = httpClient.execute(httpGet);
 
+        int statusCode = httpResponse.getStatusLine().getStatusCode();
 
-    public TaxiXL() throws IOException {
+        String mainJsonString = String.valueOf(httpResponse.getEntity().getContent());
+
+        JSONObject jsonObjectOfDistance = new JSONObject(mainJsonString);
+        if (statusCode == 200) {
+            JSONArray jsonArray = jsonObjectOfDistance.getJSONArray("distance");
+
+        }
+        return distances;
     }
 }

@@ -1,24 +1,44 @@
 package routingManagement;
 
-import static java.lang.Math.*;
+
+import com.google.common.collect.Lists;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by sheebanshaikh on 8/9/16.
  */
 
 
-public class TaxiX {
+public class TaxiX implements ProcessRouting {
 
-    //Haversine Formula for Calculating Path
-    public Double calculatePath(Long sourceLatitute, Long sourceLongitutde, Long destLatitude, Long destLongtitude) {
-        Double earthRadius = 3958.75;
-        Double latRadians = toRadians(destLatitude - sourceLatitute);
-        Double lngRadians = toRadians(destLongtitude - sourceLatitute);
-        Double sindLat = sin(latRadians / 2);
-        Double sindLng = sin(lngRadians / 2);
-        Double a = pow(sindLat, 2) + pow(sindLng, 2) * cos(toRadians(sourceLatitute)) * cos(toRadians(destLatitude));
-        double c = 2 * atan2(sqrt(a), sqrt(1 - a));
-        double dist = earthRadius * c;
-        return dist;
+    @Override
+    public List<Double> processRoutes(Map<String, String> sourceVsDestination) throws Exception {
+        List<Double> distances = Lists.newArrayList(10.0, 14.7, 16.75);
+        HttpClient httpClient = new DefaultHttpClient();
+        if (distances.size() < 1) {
+            HttpGet httpGet =
+                    new HttpGet("https://maps.googleapis.com/maps/api/distancematrix/\" +\n" + "                    \"json?units=imperial&origins=Washington,DC&destinations=New+York+City,NY&key=AIzaSyBPjJPJNLeYleFvejjeuJ7oqfxOdVckwro");
+            HttpResponse httpResponse = httpClient.execute(httpGet);
+
+            int statusCode = httpResponse.getStatusLine().getStatusCode();
+
+            String mainJsonString = String.valueOf(httpResponse.getEntity().getContent());
+
+            JSONObject jsonObjectOfDistance = new JSONObject(mainJsonString);
+            if (statusCode == 200) {
+                JSONArray jsonArray = jsonObjectOfDistance.getJSONArray("distance");
+
+            }
+        }
+        return distances;
     }
+
 }
