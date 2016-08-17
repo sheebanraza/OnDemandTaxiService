@@ -19,11 +19,11 @@ public class WaitingRide implements RideState {
         if (!sourceVsDestinationMap.equals(null)) {
             System.out.println("Request Initiated for " + sourceVsDestinationMap.keySet().size() + " trip(s)..... ");
             System.out.println("--------------------------------------------------------");
-            System.out.print("Contacting nearby Driver ");
+            System.out.println("Contacting nearby Driver ");
             for (int ik = 0; ik < 5; ik++) {
                 System.out.println(" - ");
                 try {
-                    Thread.sleep(400);
+                    Thread.sleep(600);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

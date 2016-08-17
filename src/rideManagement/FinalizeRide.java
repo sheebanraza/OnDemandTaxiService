@@ -32,13 +32,13 @@ public class FinalizeRide implements RideState {
             for (int ik = 0; ik < 5; ik++) {
                 System.out.print(". ");
                 try {
-                    Thread.sleep(500);
+                    Thread.sleep(600);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
             if (sourceVsDestinationMap.keySet().size() >= 1) {
-                System.out.println("\n----------- Ride finalized  -----------");
+                System.out.println("\n\n----------- Ride finalized  -----------");
                 for (String source : sourceVsDestinationMap.keySet()) {
                     System.out.println("Source      : " + source + "\nDestination : " + sourceVsDestinationMap.get(source)
                             + "\nDate        : " + i++ + "-Aug-2016");

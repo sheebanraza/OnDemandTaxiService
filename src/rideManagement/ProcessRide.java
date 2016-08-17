@@ -22,20 +22,14 @@ public class ProcessRide implements RideState {
         if (!sourceVsDestinationMap.equals(null)) {
             int i = 19;
 
-            for (int ik = 0; ik < 5; ik++) {
-                System.out.print(". ");
-                try {
-                    Thread.sleep(500);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
+
             if (sourceVsDestinationMap.keySet().size() >= 1) {
                 System.out.println("\n\n----------- Ride processing for -----------");
                 for (String source : sourceVsDestinationMap.keySet()) {
                     System.out.println("Source      : " + source + "\nDestination : " + sourceVsDestinationMap.get(source)
                             + "\nDate        : " + i++ + "-Aug-2016");
                 }
+                System.out.println("-----------------------------------------------");
             }
         }
         return true;
