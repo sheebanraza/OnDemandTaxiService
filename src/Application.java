@@ -232,17 +232,39 @@ public class Application {
             e.printStackTrace();
         }
 
+        System.out.println("\n--------------------");
+        System.out.println("|\tTrack Ride\t|");
+        System.out.print("--------------------");
         TrackStatus trackRide = new Itinery();
         trackRide.onStartNotify();
         trackRide.update();
         trackRide.onEndNotify();
 
-
+        generateDelay();
         for (Double distance : distances) {
             CardPay payment = new CreditPayment(distance);
         }
 
+        generateDelay();
+        System.out.println("\n-----------------------");
+        System.out.println("|\tRide Notifications\t|");
+        System.out.println("--------------------");
+        System.out.println("Driver : John Cancelled Ride ");
+        System.out.println("Reason : Driver too Far...");
+        System.out.println("Your account will be refunded. ");
+        System.out.println("------------------------------");
 
+    }
+
+    private static void generateDelay() {
+        for (int ik = 0; ik < 5; ik++) {
+            System.out.print(" ");
+            try {
+                Thread.sleep(700);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 }
