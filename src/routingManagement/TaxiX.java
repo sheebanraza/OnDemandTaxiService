@@ -21,9 +21,9 @@ public class TaxiX implements ProcessRouting {
 
     @Override
     public List<Double> processRoutes(Map<String, String> sourceVsDestination) throws Exception {
-        List<Double> distances = Lists.newArrayList(10.0, 14.7, 16.75);
+        List<Double> distance = Lists.newArrayList(10.0, 14.7, 16.75);
         HttpClient httpClient = new DefaultHttpClient();
-        if (distances.size() < 1) {
+        if (distance.size() < 1) {
             HttpGet httpGet =
                     new HttpGet("https://maps.googleapis.com/maps/api/distancematrix/\" +\n" + "                    \"json?units=imperial&origins=Washington,DC&destinations=New+York+City,NY&key=AIzaSyBPjJPJNLeYleFvejjeuJ7oqfxOdVckwro");
             HttpResponse httpResponse = httpClient.execute(httpGet);
@@ -37,6 +37,11 @@ public class TaxiX implements ProcessRouting {
                 JSONArray jsonArray = jsonObjectOfDistance.getJSONArray("distance");
 
             }
+        }
+        List<Double> distances = Lists.newArrayList();
+
+        for (int i = 0; i < sourceVsDestination.size(); i++) {
+            distances.add(distance.get(i));
         }
         return distances;
     }
