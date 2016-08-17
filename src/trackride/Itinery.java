@@ -11,7 +11,7 @@ public class Itinery implements TrackStatus {
         for (int ik = 0; ik < 5; ik++) {
             System.out.print(" - ");
             try {
-                Thread.sleep(500);
+                Thread.sleep(800);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -21,11 +21,11 @@ public class Itinery implements TrackStatus {
 
     @Override
     public void onStartNotify() {
-        System.out.println("\n\n--------------------------------------------------------------------------------------------------------------");
+        System.out.println("\n\n-------------------------------------------------------------------------------------------------------------------");
         for (int ik = 0; ik < 5; ik++) {
             System.out.print(" - ");
             try {
-                Thread.sleep(500);
+                Thread.sleep(700);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -38,12 +38,12 @@ public class Itinery implements TrackStatus {
         for (int ik = 0; ik < 5; ik++) {
             System.out.print(" - ");
             try {
-                Thread.sleep(500);
+                Thread.sleep(800);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
         System.out.println("|Drop Off. Trip Finished|");
-        System.out.println("--------------------------------------------------------------------------------------------------------------");
+        System.out.println("-------------------------------------------------------------------------------------------------------------------");
     }
 }
