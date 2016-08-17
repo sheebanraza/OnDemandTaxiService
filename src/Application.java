@@ -11,6 +11,8 @@ import rideManagement.RideState;
 import rideManagement.WaitingRide;
 import routingManagement.ProcessRouting;
 import routingManagement.TaxiX;
+import trackride.Itinery;
+import trackride.TrackStatus;
 
 import java.util.List;
 import java.util.Map;
@@ -53,9 +55,17 @@ public class Application {
                             case 2:
                                 updateDetailsMenu();
                                 continue c;
-                            case 3: //Allocate parking
+                            case 3:
+                                ParkingAllocation parkingAllocation = new ManageParking();
+                                parkingAllocation.allocationRequest();
+                                parkingAllocation = new GenerateAllocation();
+                                parkingAllocation.allocationRequest();
+                                parkingAllocation = new DeAllocateParking();
+                                parkingAllocation.allocationRequest();
+                                continue c;
 
-                            case 4:// continue b;
+                            case 4:
+                                continue b;
 
                         }
                         break;
@@ -75,13 +85,16 @@ public class Application {
     private static int bookRideUpdateMenu() {
         clearScreen();
         Scanner scanner = new Scanner(System.in);
-        System.out.println("\n\n\n\n1)Book a Ride\n"
+        System.out.println("\n\n-------------------- MENU ------------------------");
+        System.out.println("1)Book a Ride\n"
                 + "2)Update Details\n" +
                 "3)Allocate Parking\n"
                 + "4)Sign Out"
         );
+        System.out.println("-------------------------------------------------");
         System.out.println("Enter Your Choice");
         return scanner.nextInt();
+
     }
 
     private static int mainMenu() {
@@ -103,17 +116,27 @@ public class Application {
 
     private static void signInMenu(Scanner s) {
         clearScreen();
-        System.out.println("\n\n\n\n======================= Sign In =======================");
+        System.out.println("\n\n======================= Sign In =======================");
+        System.out.println("Sign In as: " +
+                "\n1. Customer " +
+                "\n2. Driver");
+        String input = s.next();
         System.out.println("Enter your Email ID: ");
-        String S_email = s.nextLine();
+        String email = s.next();
         System.out.println("Enter password: ");
-        String S_pass = s.nextLine();
-        System.out.println("\n\n\n\n====================== Signed In ======================");
+        String S_pass = s.next();
+        System.out.println("------------------------------");
+        if (input.equals("1")) {
+            System.out.println("| \t Signed in as Customer, Welcome - [ " + email + " ] \t |");
+        } else {
+            System.out.println("| \t Signed in as Driver, Welcome - [ " + email + " ] \t |");
+        }
+        System.out.println("------------------------------");
     }
 
     private static void signupMenu(Scanner s) {
         clearScreen();
-        System.out.println("\n\n\n\n ==================== Personal Details =================");
+        System.out.println("\n\n\n==================== Personal Details =================");
         System.out.println("Enter Your first name: ");
         String name = s.nextLine();
         System.out.println("Enter your Email ID: ");
@@ -127,14 +150,18 @@ public class Application {
         if (type.equals("2")) {
             System.out.println("License Number: ");
             String license = s.nextLine();
-            System.out.println("========= Car Details ========");
+            System.out.println("---------------Car Details ---------------");
             System.out.println("Car Name: ");
             s.nextLine();
             System.out.println("Car Number Plate : ");
             s.nextLine();
         }
-        System.out.println(" \n\n\n\n==================== Card Details ====================");
-        System.out.println("Enter the Card type [1. Credit/ 2. Debit]: ");
+        System.out.println("Membership: ");
+        System.out.println("1. Basic ");
+        System.out.println("2. Premium");
+        String membership = s.next();
+        System.out.println(" \n==================== Card Details ====================");
+        System.out.println("Enter the Card type \n1. Credit \n2. Debit ");
         String card_type = s.nextLine();
         System.out.println("Enter Your card Number: ");
         try {
@@ -142,13 +169,18 @@ public class Application {
         } catch (Exception e) {
             System.out.println(" --- Enter numbers only ---");
         }
-        System.out.println("Enter the Expiration Date ");
-        String Exp_date = s.nextLine();
+        System.out.println("Enter the Expiration Date: ");
+        String Exp_date = s.next();
+        System.out.println("----------------------------------");
+        System.out.println("|\tMember[ " + name + " ] added Successful \t|");
+        System.out.println("----------------------------------");
+
     }
 
     private static void updateDetailsMenu() {
+        System.out.println("-------------------------------------------------");
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter your new password: ");
+        System.out.println("\nEnter your new password: ");
         String curr_pw = scanner.nextLine();
         System.out.println("Confirm your new password: ");
         String con_pass = scanner.nextLine();
@@ -160,6 +192,7 @@ public class Application {
         String card_num_up = scanner.nextLine();
         System.out.println("Enter the Expiration Date ");
         String Exp_date_up = scanner.nextLine();
+        System.out.println("-------------------------------------------------");
     }
 
     private static void sourceAndDestinationMenu() {
@@ -175,12 +208,14 @@ public class Application {
         String rideNumber = scanner.nextLine();
 
         for (int i = 0; i < Integer.valueOf(rideNumber); i++) {
+            System.out.println("-------------------------------------------------");
             System.out.println("Enter the Source Address: ");
             String source = scanner.next();
             System.out.println("Enter the destination Address");
             String destination = scanner.next();
-            System.out.println("Enter the vehicle type Pool/ X/ XL: ");
-            vehicle_type = scanner.nextLine();
+            System.out.println("Enter the vehicle type 1. Pool \t2. Taxi-X \t3. Taxi-XL: ");
+            vehicle_type = scanner.next();
+            System.out.println("-------------------------------------------------");
             sourceVsDestinationMap.put(source, destination);
         }
 
@@ -197,16 +232,16 @@ public class Application {
             e.printStackTrace();
         }
 
+        TrackStatus trackRide = new Itinery();
+        trackRide.onStartNotify();
+        trackRide.update();
+        trackRide.onEndNotify();
+
+
         for (Double distance : distances) {
             CardPay payment = new CreditPayment(distance);
         }
 
-        ParkingAllocation parkingAllocation = new ManageParking();
-        parkingAllocation.allocationRequest();
-        parkingAllocation = new GenerateAllocation();
-        parkingAllocation.allocationRequest();
-        parkingAllocation = new DeAllocateParking();
-        parkingAllocation.allocationRequest();
 
     }
 
