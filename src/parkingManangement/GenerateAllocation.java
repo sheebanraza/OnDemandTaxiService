@@ -60,10 +60,23 @@ public class GenerateAllocation implements ParkingAllocation {
     }
 
     public void allocationRequest() {
-        System.out.println("==========Checking parking slot availability=========");
-        System.out.println("=============RECIEPT==================");
-        System.out.println("\nVehicle Name : has been parked at slot number - " + getSlotNumber());
-        System.out.println("\nDate of parking : 19-Aug-2016 " + "\nStart Time: " + starttime + "\tEnd Time: " + endtime);
-        System.out.println("\nYou have to pay: " + totalCostPerParking());
+        System.out.print("Checking parking slot availability . ");
+        for (int i = 0; i < 5; i++) {
+            System.out.print(". ");
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.println("\n\n---------------- PARKING RECEIPT ----------------");
+        System.out.println("\nVehicle Name    : Mercedes - C  " +
+                "\nSlot number     : " + getSlotNumber());
+        System.out.println("\nDate of parking : 19-Aug-2016 " +
+                "\nStart Time      : " + starttime +
+                "\nEnd Time        : " + endtime);
+        System.out.println("---------------------------------------------------");
+        System.out.println("       Total      : $" + totalCostPerParking());
+        System.out.println("---------------------------------------------------");
     }
 }

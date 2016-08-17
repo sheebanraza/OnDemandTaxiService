@@ -25,12 +25,20 @@ public class DeAllocateParking implements ParkingAllocation {
 
     //returning vehicle name
     public String getVehicle() {
-
-        return "Mercedes - C";
+        return "Mercedes - A";
     }
 
     public void allocationRequest() {
-        System.out.println("========Removing the parking slot=========");
-        System.out.println("Vehicle Id: " + getVehicle() + " has been removed from slot -" + getSlotNumber());
+        System.out.print("\nRemoving the parking slot. ");
+        for (int i = 0; i < 5; i++) {
+            System.out.print(". ");
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.println("------------------------------------\nVehicle Id  : " + getVehicle() +
+                "\nSlot        : \n------------------------------------" + getSlotNumber());
     }
 }
