@@ -15,12 +15,18 @@ public class WaitingRide implements RideState {
 
     @Override
     public boolean receiveRequest(Map<String, String> sourceVsDestinationMap, int vehicleType) {
+        System.out.println("\n\n===== NOTIFICATIONS =====");
         if (!sourceVsDestinationMap.equals(null)) {
-            System.out.println("Request Initiated for " + sourceVsDestinationMap.keySet().size() + " ride...");
-            try {
-
-            } catch (Exception e) {
-                e.printStackTrace();
+            System.out.println("Request Initiated for " + sourceVsDestinationMap.keySet().size() + " trip(s)..... ");
+            System.out.println("--------------------------------------------------------");
+            System.out.print("Contacting nearby Driver ");
+            for (int ik = 0; ik < 5; ik++) {
+                System.out.println(" - ");
+                try {
+                    Thread.sleep(400);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         }
         return true;

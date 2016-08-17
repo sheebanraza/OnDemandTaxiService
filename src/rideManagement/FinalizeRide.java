@@ -28,13 +28,24 @@ public class FinalizeRide implements RideState {
     public boolean approveRequest(Map<String, String> sourceVsDestinationMap, int vehicleType) {
         if (!sourceVsDestinationMap.equals(null)) {
             int i = 19;
-            System.out.println("Ride finalized for " + sourceVsDestinationMap.keySet().size() + " ride...");
-            if (sourceVsDestinationMap.keySet().size() > 1) {
-                for (String source : sourceVsDestinationMap.keySet()) {
-                    System.out.println("Rides \n Source: " + source + "\nDestination: " + sourceVsDestinationMap.get(source)
-                            + "\n Date : " + i++ + "-Aug-2016");
+            System.out.print("Ride finalized for " + sourceVsDestinationMap.keySet().size() + " ride. ");
+            for (int ik = 0; ik < 5; ik++) {
+                System.out.print(". ");
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
-
+            }
+            if (sourceVsDestinationMap.keySet().size() >= 1) {
+                System.out.println("\n----------- Ride finalized  -----------");
+                for (String source : sourceVsDestinationMap.keySet()) {
+                    System.out.println("Source      : " + source + "\nDestination : " + sourceVsDestinationMap.get(source)
+                            + "\nDate        : " + i++ + "-Aug-2016");
+                    System.out.println("-------------------------------------------");
+                    System.out.println("Driver Assigned : John");
+                    System.out.println("-------------------------------------------");
+                }
             }
         }
         return true;

@@ -18,13 +18,23 @@ public class ProcessRide implements RideState {
 
     @Override
     public boolean qualifyRequest(Map<String, String> sourceVsDestinationMap, int vehicleType) {
+
         if (!sourceVsDestinationMap.equals(null)) {
             int i = 19;
-            System.out.println("Ride processing for " + sourceVsDestinationMap.keySet().size() + " ride...");
-            if (sourceVsDestinationMap.keySet().size() > 1) {
+
+            for (int ik = 0; ik < 5; ik++) {
+                System.out.print(". ");
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (sourceVsDestinationMap.keySet().size() >= 1) {
+                System.out.println("\n\n----------- Ride processing for -----------");
                 for (String source : sourceVsDestinationMap.keySet()) {
-                    System.out.println("Ride processing for \n Source: " + source + "\nDestination: " + sourceVsDestinationMap.get(source)
-                            + "\n Date : " + i++ + "-Aug-2016");
+                    System.out.println("Source      : " + source + "\nDestination : " + sourceVsDestinationMap.get(source)
+                            + "\nDate        : " + i++ + "-Aug-2016");
                 }
             }
         }
