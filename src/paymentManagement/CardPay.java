@@ -26,7 +26,7 @@ public abstract class CardPay implements Payment{
     public abstract void cancelTransaction();
 
     public double getBaseFare() {
-        return tempPayment.BASE_FARE;
+        return BASE_FARE;
     }
 
 }

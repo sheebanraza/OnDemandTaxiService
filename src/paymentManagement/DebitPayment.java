@@ -5,11 +5,11 @@ package paymentManagement;
  */
 
 
-public class DebitCard extends CardPay {
+public class DebitPayment extends CardPay {
 
     private Double amount;
 
-    public DebitCard(Payment newPayment, Double dis) {
+    public DebitPayment(Payment newPayment, Double dis) {
         super(newPayment);
         System.out.println("Paying through debit");
 

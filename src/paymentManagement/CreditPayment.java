@@ -11,7 +11,6 @@ public class CreditPayment extends CardPay {
 
     public CreditPayment(double dis) {
         super();
-        System.out.println("Paying through Credit");
         generateBill(dis);
     }
 
@@ -33,8 +32,16 @@ public class CreditPayment extends CardPay {
     @Override
     public double generateBill(Double distance) {
         processTransaction(distance);
-        System.out.println("Credit transaction cost:   "+ 0.1);
-        System.out.println("Fair on Distance traveled: "+ amount);
+        System.out.println("\n-------------Ride Receipt---------------");
+        System.out.println("Paying through Credit");
+        System.out.println("Distance Travelled       : " + distance);
+        System.out.println("Base Fare                : " + getBaseFare());
+        System.out.println("Amount                   : " + amount);
+        System.out.println("Credit transaction cost  : " + 0.1);
+        System.out.println("--------------------------------------");
+        Double total = getBaseFare() + (Math.round(amount * 100.0) / 100.0) + 0.1;
+        System.out.println("      Total              : " + total);
+        System.out.println("--------------------------------------");
         return getBaseFare() + amount + 0.1;
     }
 }
