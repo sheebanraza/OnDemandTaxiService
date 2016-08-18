@@ -31,4 +31,6 @@ public abstract class MaintainRequest {
         return distances;
     }
 
+    public abstract void denyRides(List<Double> distances);
+
 }
