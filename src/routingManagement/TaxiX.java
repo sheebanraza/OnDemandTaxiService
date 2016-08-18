@@ -21,7 +21,7 @@ public class TaxiX implements ProcessRouting {
 
     @Override
     public List<Double> processRoutes(Map<String, String> sourceVsDestination) throws Exception {
-        List<Double> distance = Lists.newArrayList(10.0, 14.7, 16.75);
+        List<Double> distance = Lists.newArrayList(10.0, 14.7, 16.75, 12.32);
         HttpClient httpClient = new DefaultHttpClient();
         if (distance.size() < 1) {
             HttpGet httpGet =
