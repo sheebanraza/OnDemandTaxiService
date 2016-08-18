@@ -7,6 +7,12 @@ package notificationManagement.Model;
 
 public enum NotificationMessages {
 
+    START {
+        public String toString() {
+            return "Notifications Initiated";
+        }
+    },
+
     RIDE_INITIATED {
         public String toString() {
             return "Ride has been initiated";
@@ -37,15 +43,15 @@ public enum NotificationMessages {
         }
     },
 
-    RIDED_STARTED {
+    CUSTOMER_NOTIFICATION {
         public String toString() {
-            return "Ride Started";
+            return "Customer Notification";
         }
     },
 
-    RIDE_ENDED {
+    DRIVER_NOTIFICATION {
         public String toString() {
-            return "Ride Fininshed";
+            return "Driver Notification";
         }
     },
 
