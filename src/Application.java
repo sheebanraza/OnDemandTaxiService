@@ -8,7 +8,7 @@ import paymentManagement.CreditPayment;
 import rideManagement.*;
 import routingManagement.ProcessRouting;
 import routingManagement.TaxiX;
-import trackride.Itinery;
+import trackride.Itinerary;
 import trackride.TrackStatus;
 
 import java.util.List;
@@ -221,7 +221,7 @@ public class Application {
         System.out.println("\n--------------------");
         System.out.println("|\tTrack Ride\t|");
         System.out.print("--------------------");
-        TrackStatus trackRide = new Itinery();
+        TrackStatus trackRide = new Itinerary();
         trackRide.onStartNotify();
         trackRide.update();
         trackRide.onEndNotify();
