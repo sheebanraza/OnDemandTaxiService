@@ -60,7 +60,6 @@ public class GenerateAllocation implements ParkingAllocation {
     }
 
     public void allocationRequest() {
-        System.out.print("Checking parking slot availability . ");
         for (int i = 0; i < 5; i++) {
             System.out.print(". ");
             try {
@@ -70,7 +69,7 @@ public class GenerateAllocation implements ParkingAllocation {
             }
         }
         System.out.println("\n\n---------------- PARKING RECEIPT ----------------");
-        System.out.println("\nVehicle Name    : Mercedes - C  " +
+        System.out.println("\nVehicle Name    : Mercedes - A  " +
                 "\nSlot number     : " + getSlotNumber());
         System.out.println("\nDate of parking : 19-Aug-2016 " +
                 "\nStart Time      : " + starttime +
