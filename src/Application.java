@@ -83,7 +83,6 @@ public class Application {
     }
 
     private static int bookRideUpdateMenu() {
-        clearScreen();
         Scanner scanner = new Scanner(System.in);
         System.out.println("\n\n-------------------- MENU ------------------------");
         System.out.println("1)Book a Ride\n"
@@ -98,7 +97,7 @@ public class Application {
     }
 
     private static int mainMenu() {
-        clearScreen();
+
         Scanner scanner = new Scanner(System.in);
         System.out.println("\n\n\n\n================ Online Taxi Booking  =================");
         System.out.println("1)Sign up\n2)Sign In\n3)Exit");
@@ -106,16 +105,8 @@ public class Application {
         return scanner.nextInt();
     }
 
-    private static void clearScreen() {
-        try {
-            Runtime.getRuntime().exec("clear");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     private static void signInMenu(Scanner s) {
-        clearScreen();
         System.out.println("\n\n======================= Sign In =======================");
         System.out.println("Sign In as: " +
                 "\n1. Customer " +
@@ -135,7 +126,7 @@ public class Application {
     }
 
     private static void signupMenu(Scanner s) {
-        clearScreen();
+
         System.out.println("\n\n\n==================== Personal Details =================");
         System.out.println("Enter Your first name: ");
         String name = s.nextLine();
@@ -245,15 +236,17 @@ public class Application {
             CardPay payment = new CreditPayment(distance);
         }
 
-        generateDelay();
-        System.out.println("\n-----------------------");
-        System.out.println("|\tRide Notifications\t|");
-        System.out.println("--------------------");
-        System.out.println("Driver : John Cancelled Ride ");
-        System.out.println("Reason : Driver too Far...");
-        System.out.println("Your account will be refunded. ");
-        System.out.println("------------------------------");
 
+        if (distances.size() > 2) {
+            generateDelay();
+            System.out.println("\n-----------------------");
+            System.out.println("|\tRide Notifications\t|");
+            System.out.println("--------------------");
+            System.out.println("Driver : John Cancelled Ride " + distances.size());
+            System.out.println("Reason : Driver too Far...");
+            System.out.println("Your account will be refunded. ");
+            System.out.println("------------------------------");
+        }
     }
 
     private static void generateDelay() {
