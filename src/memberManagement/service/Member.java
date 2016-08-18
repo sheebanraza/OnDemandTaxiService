@@ -1,6 +1,7 @@
 package memberManagement.service;
 
 import memberManagement.models.MemberDetails;
+import memberManagement.models.MemberType;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -11,6 +12,10 @@ import java.util.List;
 
 @Component
 public abstract class Member {
+
+    private Long memberId;
+
+    private MemberType memberType;
 
     public abstract Boolean addOrUpdateMember(MemberDetails memberDetails);
     public abstract void deleteMember(MemberDetails memberDetails);
