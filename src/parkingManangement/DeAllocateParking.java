@@ -34,7 +34,8 @@ public class DeAllocateParking implements ParkingAllocation {
                 e.printStackTrace();
             }
         }
-        System.out.println("------------------------------------\nVehicle Id  : " + getVehicle() +
-                "\nSlot        : \n------------------------------------" + getSlotNumber());
+        System.out.println("\n------------------------------------\nVehicle Id  : " + getVehicle() +
+                "\nSlot        : " + getSlotNumber() +
+                "\n------------------------------------");
     }
 }
