@@ -21,6 +21,10 @@ public abstract class CardPay implements Payment{
     public CardPay() {
     }
 
+    public double generateBill(Double distance) {
+        return 0.0;
+    }
+
     public abstract void processTransaction(double distance);
 
     public abstract void cancelTransaction();
