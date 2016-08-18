@@ -5,10 +5,7 @@ import parkingManangement.ManageParking;
 import parkingManangement.ParkingAllocation;
 import paymentManagement.CardPay;
 import paymentManagement.CreditPayment;
-import rideManagement.FinalizeRide;
-import rideManagement.ProcessRide;
-import rideManagement.RideState;
-import rideManagement.WaitingRide;
+import rideManagement.*;
 import routingManagement.ProcessRouting;
 import routingManagement.TaxiX;
 import trackride.Itinery;
@@ -17,8 +14,6 @@ import trackride.TrackStatus;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
-
-import static com.google.common.collect.Lists.newArrayList;
 
 /**
  * Created by sheebanshaikh on 8/12/16.
@@ -129,23 +124,23 @@ public class Application {
 
         System.out.println("\n\n\n==================== Personal Details =================");
         System.out.println("Enter Your first name: ");
-        String name = s.nextLine();
+        String name = s.next();
         System.out.println("Enter your Email ID: ");
-        String email = s.nextLine();
+        String email = s.next();
         System.out.println("Enter password: ");
-        String pass = s.nextLine();
+        String pass = s.next();
         System.out.println("Confirm Password");
-        String C_pass = s.nextLine();
+        String C_pass = s.next();
         System.out.println("Register as: \n1. Customer \n2. Driver");
-        String type = s.nextLine();
+        String type = s.next();
         if (type.equals("2")) {
             System.out.println("License Number: ");
-            String license = s.nextLine();
+            String license = s.next();
             System.out.println("---------------Car Details ---------------");
             System.out.println("Car Name: ");
-            s.nextLine();
+            s.next();
             System.out.println("Car Number Plate : ");
-            s.nextLine();
+            s.next();
         }
         System.out.println("Membership: ");
         System.out.println("1. Basic ");
@@ -153,7 +148,7 @@ public class Application {
         String membership = s.next();
         System.out.println(" \n==================== Card Details ====================");
         System.out.println("Enter the Card type \n1. Credit \n2. Debit ");
-        String card_type = s.nextLine();
+        String card_type = s.next();
         System.out.println("Enter Your card Number: ");
         try {
             int card_num = s.nextInt();
@@ -172,17 +167,17 @@ public class Application {
         System.out.println("-------------------------------------------------");
         Scanner scanner = new Scanner(System.in);
         System.out.println("\nEnter your new password: ");
-        String curr_pw = scanner.nextLine();
+        String curr_pw = scanner.next();
         System.out.println("Confirm your new password: ");
-        String con_pass = scanner.nextLine();
+        String con_pass = scanner.next();
         System.out.println("Enter the Card type: \n"
                 + "1)Credit\n"
                 + "2)Debit");
-        String card_type_up = scanner.nextLine();
+        String card_type_up = scanner.next();
         System.out.println("Enter Your card Number: ");
-        String card_num_up = scanner.nextLine();
+        String card_num_up = scanner.next();
         System.out.println("Enter the Expiration Date ");
-        String Exp_date_up = scanner.nextLine();
+        String Exp_date_up = scanner.next();
         System.out.println("-------------------------------------------------");
     }
 
@@ -196,13 +191,13 @@ public class Application {
         String vehicle_type = "";
 
         System.out.println("\nEnter the number of rides you want to book: ");
-        String rideNumber = scanner.nextLine();
+        String rideNumber = scanner.next();
 
         for (int i = 0; i < Integer.valueOf(rideNumber); i++) {
             System.out.println("-------------------------------------------------");
             System.out.println("Enter the Source Address: ");
             String source = scanner.next();
-            System.out.println("Enter the destination Address");
+            System.out.println("Enter the Destination Address");
             String destination = scanner.next();
             System.out.println("Enter the vehicle type 1. Pool \t2. Taxi-X \t3. Taxi-XL: ");
             vehicle_type = scanner.next();
@@ -216,12 +211,12 @@ public class Application {
         rideState.qualifyRequest(sourceVsDestinationMap, Integer.valueOf(vehicle_type)); // Send Request for implementation
         rideState = new FinalizeRide();
         rideState.approveRequest(sourceVsDestinationMap, Integer.valueOf(vehicle_type)); // Qualify Request
-        List<Double> distances = newArrayList();
-        try {
-            distances = processRouting.processRoutes(sourceVsDestinationMap);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
+
+        MaintainRequest maintainRequest = new RequestRide(processRouting);
+        List<Double> distances = maintainRequest.handleRequests(sourceVsDestinationMap);
+
+
 
         System.out.println("\n--------------------");
         System.out.println("|\tTrack Ride\t|");
@@ -236,17 +231,10 @@ public class Application {
             CardPay payment = new CreditPayment(distance);
         }
 
+        maintainRequest = new DenyRide(processRouting);
+        maintainRequest.denyRides(distances);
 
-        if (distances.size() > 2) {
-            generateDelay();
-            System.out.println("\n-----------------------");
-            System.out.println("|\tRide Notifications\t|");
-            System.out.println("--------------------");
-            System.out.println("Driver : John Cancelled Ride " + distances.size());
-            System.out.println("Reason : Driver too Far...");
-            System.out.println("Your account will be refunded. ");
-            System.out.println("------------------------------");
-        }
+
     }
 
     private static void generateDelay() {
