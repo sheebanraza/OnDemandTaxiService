@@ -4,7 +4,7 @@ package trackride;
  * Created by sheebanshaikh on 8/16/16.
  */
 
-public class Itinery implements TrackStatus {
+public class Itinerary implements TrackStatus {
 
     @Override
     public void update() {
