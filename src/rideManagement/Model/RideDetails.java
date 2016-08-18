@@ -2,6 +2,7 @@ package rideManagement.Model;
 
 import memberManagement.service.Customer;
 import memberManagement.service.Driver;
+import rideManagement.RideState;
 
 import javax.persistence.*;
 
@@ -31,6 +32,12 @@ public class RideDetails {
     @Column
     private RideStatus rideStatus;
 
+    private RideState rideState;
+
+    //State Pattern Implementation
+    public RideDetails(RideState rideState) {
+        this.rideState = rideState;
+    }
 
     public RideDetails(String source, String destination, Customer customer, Driver driver, RideStatus rideStatus) {
         this.source = source;
@@ -38,6 +45,14 @@ public class RideDetails {
         this.customer = customer;
         this.driver = driver;
         this.rideStatus = rideStatus;
+    }
+
+    public RideState getRideState() {
+        return rideState;
+    }
+
+    public void setRideState(RideState rideState) {
+        this.rideState = rideState;
     }
 
     public Long getRideDetailsId() {
