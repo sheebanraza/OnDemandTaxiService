@@ -11,12 +11,19 @@ import java.util.List;
 
 public class RequestRide extends MaintainRequest {
 
+    public Long requestId;
+
     public RequestRide(ProcessRouting processRouting) {
         super(processRouting);
     }
 
     @Override
     public void denyRides(List<Double> distances) {
+
+    }
+
+    @Override
+    public void requestType() {
 
     }
 

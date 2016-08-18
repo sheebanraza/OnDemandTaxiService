@@ -42,4 +42,9 @@ public class DenyRide extends MaintainRequest {
         }
     }
 
+    @Override
+    public void requestType() {
+
+    }
+
 }
