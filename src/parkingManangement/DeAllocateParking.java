@@ -1,7 +1,5 @@
 package parkingManangement;
 
-import memberManagement.models.Vehicle;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -11,9 +9,7 @@ import javax.persistence.PersistenceContext;
 
 public class DeAllocateParking implements ParkingAllocation {
 
-    int slotsNumber = 0;
-    String vehicleId;
-    Vehicle vehicle;
+
     @PersistenceContext
     private EntityManager entityManager;
 
