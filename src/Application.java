@@ -193,6 +193,7 @@ public class Application {
         System.out.println("\nEnter the number of rides you want to book: ");
         String rideNumber = scanner.next();
 
+        //Accept source and destinations
         for (int i = 0; i < Integer.valueOf(rideNumber); i++) {
             System.out.println("-------------------------------------------------");
             System.out.println("Enter the Source Address: ");
@@ -205,6 +206,7 @@ public class Application {
             sourceVsDestinationMap.put(source, destination);
         }
 
+        //Schedule Rides
         RideState rideState = new WaitingRide();
         rideState.receiveRequest(sourceVsDestinationMap, Integer.valueOf(vehicle_type)); //approve request
         rideState = new ProcessRide();
@@ -212,12 +214,12 @@ public class Application {
         rideState = new FinalizeRide();
         rideState.approveRequest(sourceVsDestinationMap, Integer.valueOf(vehicle_type)); // Qualify Request
 
-
+        //Routing Algo
         MaintainRequest maintainRequest = new RequestRide(processRouting);
         List<Double> distances = maintainRequest.handleRequests(sourceVsDestinationMap);
 
 
-
+        //Live Track Ride
         System.out.println("\n--------------------");
         System.out.println("|\tTrack Ride\t|");
         System.out.print("--------------------");
@@ -226,11 +228,13 @@ public class Application {
         trackRide.update();
         trackRide.onEndNotify();
 
+        //Process Payment
         generateDelay();
         for (Double distance : distances) {
             CardPay payment = new CreditPayment(distance);
         }
 
+        //DenyRide
         maintainRequest = new DenyRide(processRouting);
         maintainRequest.denyRides(distances);
 
