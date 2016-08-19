@@ -25,7 +25,7 @@ public class TaxiX implements ProcessRouting {
         HttpClient httpClient = new DefaultHttpClient();
         if (distance.size() < 1) {
             HttpGet httpGet =
-                    new HttpGet("https://maps.googleapis.com/maps/api/distancematrix/\" +\n" + "                    \"json?units=imperial&origins=Washington,DC&destinations=New+York+City,NY&key=AIzaSyBPjJPJNLeYleFvejjeuJ7oqfxOdVckwro");
+                    new HttpGet("https://maps.googleapis.com/maps/api/distancematrix/\" +\n" + "                    \"json?units=imperial&origins=Washington,DC&destinations=New+York+City,NY&key=");
             HttpResponse httpResponse = httpClient.execute(httpGet);
 
             int statusCode = httpResponse.getStatusLine().getStatusCode();
